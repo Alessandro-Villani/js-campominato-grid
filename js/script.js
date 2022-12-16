@@ -43,6 +43,9 @@ const targetGrid = document.querySelector('.grid');
 console.log(targetGrid);
 const targetTitle = document.querySelector('main h1');
 console.log(targetTitle);
+const properties = document.querySelector(':root');
+console.log(properties);
+
 
 
 //2. Add listener to button
@@ -63,12 +66,21 @@ buttonPlay.addEventListener('click', () =>{
         targetGrid.classList.add('d-flex');
     }
 
-    //6. Add cells into grid
-    let cell = ''
-    for (let i = 1; i <= 100; i++){
+    //6. Define number of cells to create, based on difficulty
+    const RequiredCellsForRow = parseInt(inputDifficulty.value);
+    console.log(RequiredCellsForRow);
+    const cellNumber =  RequiredCellsForRow * RequiredCellsForRow; 
+    console.log(cellNumber);
 
-        cell = createCell(i);
+    //7. Change cells for row variable in css depending on difficulty
+    properties.style.setProperty('--cell-for-row', RequiredCellsForRow);
+    
+    //8. Add cells into grid
+     for (let i = 1; i <= cellNumber; i++){
+
+        const cell = createCell(i);
         targetGrid.appendChild(cell);
 
     }
+    
 });
