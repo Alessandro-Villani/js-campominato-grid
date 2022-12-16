@@ -28,6 +28,7 @@ const createCell = (content) => {
     cell.append(content);
     cell.addEventListener('click', () => {
         cell.classList.toggle('clicked');
+        console.log(content);
     })
     return cell;
 }
