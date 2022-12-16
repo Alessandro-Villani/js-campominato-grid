@@ -19,3 +19,55 @@ Aggiungere una select accanto al bottone di generazione, che fornisca una scelta
 - con difficoltà 3 => 49 caselle, con un numero compreso tra 1 e 49, divise in 7 caselle per 7 righe;
 
 ----------------------------------------------------------------------------------------*/
+
+//# FUNCTIONS
+//function for cell creation
+const createCell = (content) => {
+    const cell = document.createElement('div');
+    cell.classList.add('cell', 'd-flex', 'justify-center', 'align-center');
+    cell.append(content);
+    cell.addEventListener('click', () => {
+        cell.classList.toggle('clicked');
+    })
+    return cell;
+}
+
+
+//1. Pick elements from DOM
+const inputDifficulty = document.getElementById('difficulty');
+console.log(inputDifficulty);
+const buttonPlay = document.getElementById('play');
+console.log(buttonPlay);
+const targetGrid = document.querySelector('.grid');
+console.log(targetGrid);
+const targetTitle = document.querySelector('main h1');
+console.log(targetTitle);
+
+
+//2. Add listener to button
+
+buttonPlay.addEventListener('click', () =>{
+    console.log('press');
+
+    //3. Reset Grid
+    targetGrid.innerText = '';
+
+    //4. Add d-none to title
+    targetTitle.classList.add('d-none');
+
+    //5. Add d-flex to grid
+
+    if (targetGrid.classList.contains('d-none')){
+        targetGrid.classList.remove('d-none');
+        targetGrid.classList.add('d-flex');
+    }
+
+    //6. Add cells into grid
+    let cell = ''
+    for (let i = 1; i <= 100; i++){
+
+        cell = createCell(i);
+        targetGrid.appendChild(cell);
+
+    }
+});
